@@ -1,3 +1,4 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import React, { useState, useEffect } from "react";
 import styles from "./BillSplitter.module.scss";
 
@@ -19,27 +20,31 @@ const BillSplitter = () => {
     }
   };
 
+  const CustomTipHandler = (e) => {
+    if (bill > 0) {
+      const tipvalue = e.target.value / 100;
+      setTip(tipvalue);
+    }
+  };
+
   const PersonHandler = (e) => {
     setPerson(e.target.value);
   };
 
+  const RessetButton = () => {
+    setBill("");
+    setTip(0);
+    setPerson(0);
+    setTipAmount(0.0);
+    setTotal(0.0);
+  };
+
   useEffect(() => {
     if (person > 0 && bill > 0 && tip > 0) {
-      console.log("bill= " + bill);
-      console.log("tip= " + tip);
-      console.log("person= " + person);
-      console.log("tipAmount= " + tipAmount);
-      console.log("total= " + total);
       setTipAmount((bill * tip) / person);
       setTotal((parseInt(bill) + tipAmount * person) / person);
     }
   });
-
-  //   console.log("bill= " + bill);
-  //   console.log("tip= " + tip);
-  //   console.log("person= " + person);
-  //   console.log("tipAmount= " + tipAmount);
-  //   console.log("total= " + total);
 
   return (
     <div className={styles.billsplitter}>
@@ -69,7 +74,11 @@ const BillSplitter = () => {
             <button value={0.5} onClick={TipHandler}>
               50%
             </button>
-            <input placeholder="Custom" type="text"></input>
+            <input
+              placeholder="Custom"
+              type="text"
+              onChange={CustomTipHandler}
+            ></input>
           </div>
         </div>
         <div className={styles.billsplitter__leftSide__people}>
@@ -108,7 +117,7 @@ const BillSplitter = () => {
           </div>
         </div>
         <div className={styles.billsplitter__rightSide__button}>
-          <button>RESET</button>
+          <button onClick={RessetButton}>RESET</button>
         </div>
       </div>
     </div>
