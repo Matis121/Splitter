@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./BillSplitter.module.scss";
 
 const BillSplitter = () => {
@@ -20,13 +20,20 @@ const BillSplitter = () => {
   };
 
   const PersonHandler = (e) => {
-    console.log("Key pressed: " + e.target.value);
     setPerson(e.target.value);
-    console.log("Person: " + person);
-
-    setTipAmount((bill * tip) / person);
-    setTotal((parseInt(bill) + parseInt(tipAmount)) / person);
   };
+
+  useEffect(() => {
+    if (person > 0 && bill > 0 && tip > 0) {
+      console.log("bill= " + bill);
+      console.log("tip= " + tip);
+      console.log("person= " + person);
+      console.log("tipAmount= " + tipAmount);
+      console.log("total= " + total);
+      setTipAmount((bill * tip) / person);
+      setTotal((parseInt(bill) + tipAmount * person) / person);
+    }
+  });
 
   //   console.log("bill= " + bill);
   //   console.log("tip= " + tip);
@@ -50,7 +57,7 @@ const BillSplitter = () => {
             <button value={0.05} onClick={TipHandler}>
               5%
             </button>
-            <button value={0.01} onClick={TipHandler}>
+            <button value={0.1} onClick={TipHandler}>
               10%
             </button>
             <button value={0.15} onClick={TipHandler}>
