@@ -1,0 +1,217 @@
+@import "./variables.scss";
+
+.billsplitter {
+  width: 120rem;
+  height: 60rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white;
+  border-radius: 20px;
+  padding: 5rem;
+  &__leftSide {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 5rem;
+
+    p {
+      font-size: $font-small;
+      font-weight: 700;
+      color: $dark-grayish-cyan;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      width: 100%;
+      height: 5rem;
+      text-align: right;
+      font-size: $font-big;
+      font-weight: 700;
+      color: $very-dark-cyan;
+      font-family: inherit;
+      border: none;
+      background-color: $light-grayish-cyan;
+      border-radius: 5px;
+    }
+
+    &__bill {
+      input:focus {
+        outline: 3px solid $strong-cyan;
+      }
+    }
+    &__tip {
+      display: flex;
+      flex-direction: column;
+      &_buttons {
+        display: grid;
+        grid-template-columns: repeat(3, calc(33.3% - 1.3rem));
+        gap: 2rem;
+        button {
+          height: 5rem;
+          border-radius: 5px;
+          font-size: $font-big;
+          font-weight: 700;
+          color: white;
+          border: none;
+          background-color: $very-dark-cyan;
+          font-family: inherit;
+
+          &:hover {
+            background-color: $strong-cyan;
+            color: $very-dark-cyan;
+          }
+        }
+        input {
+          text-align: center;
+        }
+      }
+    }
+    &__people {
+    }
+  }
+  &__rightSide {
+    width: 50%;
+    height: 100%;
+    background-color: $very-dark-cyan;
+    border-radius: 20px;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__values {
+      display: flex;
+      flex-direction: column;
+      margin-top: -5rem;
+
+      &__tipAmount {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &_text {
+          p {
+            color: $white;
+            font-size: $font-medium;
+          }
+          span {
+            color: $dark-grayish-cyan;
+            font-size: $font-small;
+          }
+        }
+        &_value {
+          color: $strong-cyan;
+          font-size: $font-huge;
+        }
+      }
+      &__total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: -3rem;
+        &_text {
+          p {
+            color: $white;
+            font-size: $font-medium;
+          }
+          span {
+            color: $dark-grayish-cyan;
+            font-size: $font-small;
+          }
+        }
+        &_value {
+          color: $strong-cyan;
+          font-size: $font-huge;
+        }
+      }
+    }
+    &__button {
+      button {
+        width: 100%;
+        background-color: $strong-cyan;
+        padding: 2rem;
+        border-radius: 10px;
+        border: none;
+        font-size: $font-medium;
+        font-weight: 700;
+        color: $very-dark-cyan;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .billsplitter {
+    width: 100vw;
+    height: 100%;
+    flex-direction: column;
+    padding: 2rem 2rem 4rem 2rem;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    &__leftSide {
+      padding: 3rem 0rem;
+      width: 100%;
+      margin-right: 0rem;
+      p {
+      }
+
+      input {
+      }
+
+      &__bill {
+        margin-bottom: 4rem;
+        input:focus {
+        }
+      }
+      &__tip {
+        margin-bottom: 4rem;
+        &_buttons {
+          grid-template-columns: repeat(2, calc(50% - 1rem));
+          button {
+            &:hover {
+            }
+          }
+          input {
+          }
+        }
+      }
+      &__people {
+        margin-bottom: 5rem;
+      }
+    }
+    &__rightSide {
+      padding: 3rem;
+      width: 100%;
+      margin-right: 0rem;
+
+      &__values {
+        &__tipAmount {
+          &_text {
+            p {
+            }
+            span {
+            }
+          }
+          &_value {
+          }
+        }
+        &__total {
+          &_text {
+            p {
+            }
+            span {
+            }
+          }
+          &_value {
+          }
+        }
+      }
+      &__button {
+        button {
+        }
+      }
+    }
+  }
+}
