@@ -38,10 +38,8 @@
     }
 
     &__bill {
-      input:focus {
-        outline: 3px solid $strong-cyan;
-      }
     }
+
     &__tip {
       display: flex;
       flex-direction: column;
@@ -49,7 +47,7 @@
         display: grid;
         grid-template-columns: repeat(3, calc(33.3% - 1.3rem));
         gap: 2rem;
-        button {
+        &_button {
           height: 5rem;
           border-radius: 5px;
           font-size: $font-big;
@@ -58,6 +56,17 @@
           border: none;
           background-color: $very-dark-cyan;
           font-family: inherit;
+
+          &_active {
+            height: 5rem;
+            border-radius: 5px;
+            font-size: $font-big;
+            font-weight: 700;
+            border: none;
+            background-color: $strong-cyan;
+            color: $very-dark-cyan;
+            font-family: inherit;
+          }
 
           &:hover {
             background-color: $strong-cyan;
@@ -128,17 +137,53 @@
       }
     }
     &__button {
-      button {
+      &_active {
         width: 100%;
-        background-color: $strong-cyan;
         padding: 2rem;
         border-radius: 10px;
         border: none;
         font-size: $font-medium;
         font-weight: 700;
+        background-color: $strong-cyan;
         color: $very-dark-cyan;
       }
+      &_notActive {
+        width: 100%;
+        padding: 2rem;
+        border-radius: 10px;
+        border: none;
+        font-size: $font-medium;
+        font-weight: 700;
+        background-color: $dark-grayish-cyan;
+        color: $very-dark-cyan;
+
+        &:hover {
+          cursor: default;
+        }
+      }
     }
+  }
+}
+
+.inputError {
+  &:focus {
+    outline: 3px solid red;
+  }
+}
+
+.inputCorrect {
+  &:focus {
+    outline: 3px solid $strong-cyan;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  &_error {
+    color: red !important;
   }
 }
 
@@ -154,27 +199,14 @@
       padding: 3rem 0rem;
       width: 100%;
       margin-right: 0rem;
-      p {
-      }
-
-      input {
-      }
 
       &__bill {
         margin-bottom: 4rem;
-        input:focus {
-        }
       }
       &__tip {
         margin-bottom: 4rem;
         &_buttons {
           grid-template-columns: repeat(2, calc(50% - 1rem));
-          button {
-            &:hover {
-            }
-          }
-          input {
-          }
         }
       }
       &__people {
@@ -185,33 +217,6 @@
       padding: 3rem;
       width: 100%;
       margin-right: 0rem;
-
-      &__values {
-        &__tipAmount {
-          &_text {
-            p {
-            }
-            span {
-            }
-          }
-          &_value {
-          }
-        }
-        &__total {
-          &_text {
-            p {
-            }
-            span {
-            }
-          }
-          &_value {
-          }
-        }
-      }
-      &__button {
-        button {
-        }
-      }
     }
   }
 }
